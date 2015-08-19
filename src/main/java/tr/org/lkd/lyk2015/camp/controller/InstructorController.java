@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import tr.org.lkd.lyk2015.camp.model.Course;
 import tr.org.lkd.lyk2015.camp.model.Instructor;
 import tr.org.lkd.lyk2015.camp.service.CourseService;
 import tr.org.lkd.lyk2015.camp.service.InstructorService;
@@ -68,9 +69,11 @@ public class InstructorController {
 	@RequestMapping(value="/update/{id}", method = RequestMethod.GET)
 	public String getUpdate(@PathVariable("id") Long id, Model model) {
 		
-		Instructor instructor = instructorService.getById(id);
-		model.addAttribute("courses", courseService.getAll());
-		model.addAttribute(instructor);
+		Instructor instructor = instructorService.getInstructorWithCourses(id);
+		List <Course>courses = courseService.getAll();
+		
+		model.addAttribute("courses", courses);
+		model.addAttribute("instructor", instructor);
 		
 		return "instructors/updateInstructor";
 	}
@@ -83,6 +86,8 @@ public class InstructorController {
 		
 		return "redirect:/instructors";
 	}
+	
+	
 	
 	
 	

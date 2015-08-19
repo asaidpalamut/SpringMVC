@@ -23,7 +23,7 @@ public class Course extends AbstractBaseModel{
 	private Boolean active = true;
 	
 
-	@ManyToMany(mappedBy = "courses")
+	@ManyToMany(mappedBy = "courses") // iki fiel aynı oamaz
 	private Set<Instructor> instructors = new HashSet<>();
 
 	

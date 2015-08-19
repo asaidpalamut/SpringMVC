@@ -23,8 +23,16 @@ public class Student extends AbstractUser {
 	private Sex sex;
  
 	@OneToMany(mappedBy = "owner")
-	private Set<ApplicationForm> applicationForms;
+	private Set<Application> application;
 	
+	public Set<Application> getApplication() {
+		return application;
+	}
+
+	public void setApplication(Set<Application> application) {
+		this.application = application;
+	}
+
 	public Sex getSex() {
 		return sex;
 	}
@@ -32,5 +40,7 @@ public class Student extends AbstractUser {
 	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
+	
+	
 	
 }

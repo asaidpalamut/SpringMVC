@@ -1,27 +1,29 @@
 package tr.org.lkd.lyk2015.camp.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-
 
 /*
 *cengizhan - Aug 16, 2015
 */
 
-@MappedSuperclass // Bunun icinde ki kolonlar sub classlar icinde gecerli olacak.
-public abstract class AbstractUser extends AbstractBaseModel{
-	
+@MappedSuperclass // Bunun icinde ki kolonlar sub classlar icinde gecerli
+					// olacak.
+public abstract class AbstractUser extends AbstractBaseModel {
+
 	private String name;
 	private String surname;
+
+	@Column(unique = true)
 	private Long tckn;
+
 	private String password;
 	private Integer birthDate;
 	private String email;
 	private String phone;
 
 	public String getPhone() {
-		return phone;
+		return this.phone;
 	}
 
 	public void setPhone(String phone) {
@@ -29,7 +31,7 @@ public abstract class AbstractUser extends AbstractBaseModel{
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -37,7 +39,7 @@ public abstract class AbstractUser extends AbstractBaseModel{
 	}
 
 	public String getSurname() {
-		return surname;
+		return this.surname;
 	}
 
 	public void setSurname(String surname) {
@@ -45,7 +47,7 @@ public abstract class AbstractUser extends AbstractBaseModel{
 	}
 
 	public Long getTckn() {
-		return tckn;
+		return this.tckn;
 	}
 
 	public void setTckn(Long tckn) {
@@ -53,7 +55,7 @@ public abstract class AbstractUser extends AbstractBaseModel{
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -61,7 +63,7 @@ public abstract class AbstractUser extends AbstractBaseModel{
 	}
 
 	public Integer getBirthDate() {
-		return birthDate;
+		return this.birthDate;
 	}
 
 	public void setBirthDate(Integer birthDate) {
@@ -69,7 +71,7 @@ public abstract class AbstractUser extends AbstractBaseModel{
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {

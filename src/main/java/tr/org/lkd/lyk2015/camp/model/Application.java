@@ -6,10 +6,10 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 /*
 *cengizhan - Aug 16, 2015
@@ -22,12 +22,14 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
-public class ApplicationForm  extends AbstractBaseModel{
+public class Application extends AbstractBaseModel {
 
 	public enum WorkStatus {
 		WORKING, STUDENT, NOT_WORKING
 	}
 
+	@Max(2005)
+	@Min(1940)
 	private Integer year;
 
 	@Enumerated(EnumType.STRING)
@@ -39,11 +41,11 @@ public class ApplicationForm  extends AbstractBaseModel{
 
 	private String workDetails;
 
-	private Integer englishLevel;
+	private Integer englishLevel = 0;
 
 	private String githubLink;
 
-	@OneToMany
+	@ManyToMany
 	private Set<Course> preferredCourses = new HashSet<>();
 
 	@ManyToOne
@@ -51,8 +53,28 @@ public class ApplicationForm  extends AbstractBaseModel{
 
 	private Boolean needAccomodation;
 
+	private boolean valited = false;
+
+	private String validationId;
+
+	public boolean isValited() {
+		return this.valited;
+	}
+
+	public void setValited(boolean valited) {
+		this.valited = valited;
+	}
+
+	public String getValidationId() {
+		return this.validationId;
+	}
+
+	public void setValidationId(String validationId) {
+		this.validationId = validationId;
+	}
+
 	public WorkStatus getWorkStatus() {
-		return workStatus;
+		return this.workStatus;
 	}
 
 	public void setWorkStatus(WorkStatus workStatus) {
@@ -60,7 +82,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public boolean isOfficer() {
-		return officer;
+		return this.officer;
 	}
 
 	public void setOfficer(boolean officer) {
@@ -68,7 +90,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public String getCorporation() {
-		return corporation;
+		return this.corporation;
 	}
 
 	public void setCorporation(String corporation) {
@@ -76,7 +98,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public String getWorkDetails() {
-		return workDetails;
+		return this.workDetails;
 	}
 
 	public void setWorkDetails(String workDetails) {
@@ -84,7 +106,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public int getEnglishLevel() {
-		return englishLevel;
+		return this.englishLevel;
 	}
 
 	public void setEnglishLevel(int englishLevel) {
@@ -92,7 +114,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public String getGithubLink() {
-		return githubLink;
+		return this.githubLink;
 	}
 
 	public void setGithubLink(String githubLink) {
@@ -100,7 +122,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public Set<Course> getPreferredCourses() {
-		return preferredCourses;
+		return this.preferredCourses;
 	}
 
 	public void setPreferredCourses(Set<Course> preferredCourses) {
@@ -112,7 +134,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public Integer getYear() {
-		return year;
+		return this.year;
 	}
 
 	public void setYear(Integer year) {
@@ -120,7 +142,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public Boolean getOfficer() {
-		return officer;
+		return this.officer;
 	}
 
 	public void setOfficer(Boolean officer) {
@@ -128,7 +150,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public Student getOwner() {
-		return owner;
+		return this.owner;
 	}
 
 	public void setOwner(Student owner) {
@@ -140,7 +162,7 @@ public class ApplicationForm  extends AbstractBaseModel{
 	}
 
 	public Boolean getNeedAccomodation() {
-		return needAccomodation;
+		return this.needAccomodation;
 	}
 
 }

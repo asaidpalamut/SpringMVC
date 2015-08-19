@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,17 +25,36 @@ public class InstructorService extends GenericService<Instructor> {
     @Autowired
     private CourseDao courseDao;
     
+    
+    
     public void create(Instructor instructor, List<Long> ids) {
     	
-
 		List<Course> courses = courseDao.getByIds(ids);
 		
-		Set<Course> setCourse = new HashSet();
-		setCourse.addAll(courses);
+//		Set<Course> setCourse = new HashSet();
+//		setCourse.addAll(courses);
+//		
+//		instructor.setCourses(setCourse);
 		
-		instructor.setCourses(setCourse);
+		
+		instructor.getCourses().addAll(courses);
 
-		instructorDao.create(instructor);
-    	
+		instructorDao.create(instructor);   	
     }
+    
+    
+    public Instructor getInstructorWithCourses(Long id) {
+    	
+    	//Instructor instructor = getById(id);
+    	
+    	Instructor instructor = instructorDao.getByIdWithCourses(id);
+    	
+    	//Hibernate.initialize(instructor.getCourses()); //lazy_loading
+    	
+    	
+    	
+    	return instructor;
+    }
+    
+    
 }

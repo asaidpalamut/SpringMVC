@@ -62,7 +62,7 @@
 						<option th:each="course : ${courses}"
 							h:value="${course.id}"
 							th:text="${course.name}"
-							th:selected="{#lists.contains(instructor.courses, course)}">Kurslar</option>
+							th:selected="${#lists.contains(instructor.courses, course)}">Kurslar</option>
 					</select>
 				</div>
 				 
