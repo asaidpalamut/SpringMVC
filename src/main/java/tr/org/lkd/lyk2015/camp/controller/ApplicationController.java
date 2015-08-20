@@ -59,7 +59,7 @@ public class ApplicationController {
 
 		else {
 			this.applicationService.create(applicationFormDto);
-			model.addAttribute("successMessage", "Basvuru Kaydınız Yapılmıştır");
+			model.addAttribute("successMessage", "Aktivasyon Linki Mail Adresinize Gonderilmistir.");
 
 		}
 		return "applicationSuccess";
@@ -68,8 +68,16 @@ public class ApplicationController {
 	@RequestMapping(value = "/validate/{confirmationCode}", method = RequestMethod.GET)
 	public String getValidate(@PathVariable("confirmationCode") String confirmationCode, Model model) {
 
-		model.addAttribute("successMessage", "Basvuru Kaydınız Yapılmıştır");
+		if (this.applicationService.validation(confirmationCode)) {
+			model.addAttribute("successMessage", "Basvuru Kaydınız Onaylanmıştır");
 
+		}
+
+		else {
+
+			model.addAttribute("successMessage", "Basvuru Kaydınız Onaylanmamıştır");
+
+		}
 		return "confirmation";
 	}
 

@@ -63,7 +63,7 @@ public class ApplicationService extends GenericService<Application> {
 		String url = "http://localhost:8080/camp/applicationForm/validate/" + uuid;
 
 		// TODO send mail
-		this.mailService.sendEmail(student.getEmail(), "Basvuru Onayı", url);
+		this.mailService.sendEmail(student.getEmail(), "Basvuru Onayı", student.getName(), url);
 
 		application.setValidationId(uuid);
 
@@ -88,4 +88,21 @@ public class ApplicationService extends GenericService<Application> {
 
 		this.applicationDao.create(application);
 	}
+
+	public boolean validation(String confirmationCode) {
+
+		Application application = this.applicationDao.validation(confirmationCode);
+
+		if (!application.isValited()) {
+
+			application.setValited(true);
+			this.applicationDao.update(application);
+
+			return true;
+		}
+
+		return false;
+
+	}
+
 }

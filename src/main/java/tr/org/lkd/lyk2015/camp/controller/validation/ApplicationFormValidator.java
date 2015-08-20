@@ -95,14 +95,6 @@ public class ApplicationFormValidator implements Validator {
 			errors.rejectValue("student.email", "error.examNotSuccess", "Sınavı gecemediniz ..");
 		}
 
-		// ..
-		boolean mailVaild = this.mailService.sendEmail(student.getEmail(), "KONU", "dogrulama linki");
-
-		if (!mailVaild) {
-
-			errors.rejectValue("student.email", "error.mailInvalid", "Dogrulama linkini tıklayın!!");
-		}
-
 	}
 
 }

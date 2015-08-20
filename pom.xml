@@ -17,7 +17,7 @@
 		<aspectj.version>1.8.6</aspectj.version>
 	</properties>
 
-	<!--  			Spring freamework için version veriyoruz		 -->
+	<!-- Spring freamework için version veriyoruz -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -31,6 +31,19 @@
 	</dependencyManagement>
 	<dependencies>
 
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.3</version>
+		</dependency>
+
+		<!-- -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
